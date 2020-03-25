@@ -46,3 +46,11 @@ E:\5B\INFO\FormulaOneSolution\FormulaOneDll\obj\Debug\FormulaOneDll.csproj.CopyC
 E:\5B\INFO\FormulaOneSolution\FormulaOneDll\obj\Debug\FormulaOneDll.dll
 E:\5B\INFO\FormulaOneSolution\FormulaOneDll\obj\Debug\FormulaOneDll.pdb
 I:\5B\INFO\FormulaOneSolution\FormulaOneDll\obj\Debug\FormulaOneDll.csprojAssemblyReference.cache
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\bin\Debug\FormulaOneDll.dll
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\bin\Debug\FormulaOneDll.pdb
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\obj\Debug\FormulaOneDll.csprojResolveAssemblyReference.cache
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\obj\Debug\FormulaOneDll.csproj.CoreCompileInputs.cache
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\obj\Debug\FormulaOneDll.dll
+C:\Users\DubStep_JohNNy\Desktop\formula-1-gcanavero0417\FormulaOneDll\obj\Debug\FormulaOneDll.pdb

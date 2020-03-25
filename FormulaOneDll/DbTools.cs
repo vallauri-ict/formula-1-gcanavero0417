@@ -10,7 +10,7 @@ namespace FormulaOneDll
 {
     public class DbTools
     {
-        public const string WORKINGPATH = @"I:\5B\INFO\FormulaOneSolution\Dati\";
+        public const string WORKINGPATH = @"D:\5B\INFO\FormulaOneSolution\Dati\";
         private const string CONNECTION_STRING = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+WORKINGPATH+@"FormulaOne.mdf;Integrated Security=True";
 
         private Dictionary<int, Driver> drivers;
