@@ -2,6 +2,118 @@
 
 The WebServices are based on ASP.net Web Api 2.0 and are accessible with the prefix `/api/`.
 
+## Teams
+
+### `/api/teams`
+Returns all teams
+
+    [
+		{ 
+			id,
+			name,
+			fullTeamName,
+			country{
+				countryCode,
+				countryName
+			},
+			powerUnit,
+			technicalChief,
+			chassis,
+			firstDriver{ 
+				id,
+				firstname,
+				lastname,
+				dob,
+				placeOfBirth,
+				country{
+					countryCode,
+					countryName
+				},
+				img,
+				description
+			},
+			secondDriver{
+				-Driver-
+			},
+			logo,
+			img
+		},
+		{ Team },
+	]
+
+### `/api/teams/<id>`
+Returns specific team by id
+
+    { 
+		id,
+		name,
+		fullTeamName,
+		country{
+			countryCode,
+			countryName
+		},
+		powerUnit,
+		technicalChief,
+		chassis,
+		firstDriver{
+			id,
+			firstname,
+			lastname,
+			dob,
+			placeOfBirth,
+			country{
+				countryCode,
+				countryName
+			},
+			img,
+			description
+		},
+		secondDriver{
+			-Driver-
+		},
+		logo,
+		img
+	}
+	
+## Driver
+
+### `/api/drivers`
+Returns all drivers
+
+    [
+		{ 
+			id,
+			firstname,
+			lastname,
+			dob,
+			placeOfBirth,
+			country{
+				countryCode,
+				countryName
+			},
+			img,
+			description
+		},
+		{ Driver },
+	]
+
+### `/api/drivers/<id>`
+Returns specific driver by id
+
+    { 
+		id,
+		firstname,
+		lastname,
+		dob,
+		placeOfBirth,
+		country{
+			countryCode,
+			countryName
+		},
+		img,
+		description
+	}
+	
 ## Countries
 
 ### `/api/countries`
@@ -9,8 +121,8 @@ Returns all countries
 
     [
 		{ 
-			CountryCode,
-			CountryName
+			countryCode,
+			countryName
 		},
 		{ Country },
 	]
@@ -19,6 +131,202 @@ Returns all countries
 Returns specific country by id
 
     { 
-		CountryCode,
-		CountryName
+		countryCode,
+		countryName
+	}
+	
+## Circuits
+
+### `/api/circuits`
+Returns all circuits
+
+    [
+		{ 
+			id,
+			name,
+			length,
+			nLaps,
+			country{
+				countryCode,
+				countryName
+			},
+			recordLap,
+			img
+		},
+		{ Circuit },
+	]
+
+### `/api/circuits/<id>`
+Returns specific circuit by id
+
+    { 
+		id,
+		name,
+		length,
+		nLaps,
+		country{
+			countryCode,
+			countryName
+		},
+		recordLap,
+		img
+	}
+
+## RacesScores
+
+### `/api/racesscores`
+Returns all RacesScores
+
+    [
+		id,
+		driver{
+			id,
+			firstname,
+			lastname,
+			dob,
+			placeOfBirth,
+			country{
+				countryCode,
+				countryName
+			},
+			img,
+			description
+		},
+		pos{
+			pos,
+			score,
+			description
+		},
+		race{
+			id,
+			name,
+			circuit{
+				id,
+				name,
+				length,
+				nLaps,
+				country{
+					countryCode,
+					countryName
+				},
+				recordLap,
+				img
+				},
+			date
+		},
+		fastestLap,
+		{ RacesScore },
+	]
+
+### `/api/racesscores/<id>`
+Returns specific race score by id
+
+    { 
+		id,
+		driver{
+			id,
+			firstname,
+			lastname,
+			dob,
+			placeOfBirth,
+			country{
+				countryCode,
+				countryName
+			},
+			img,
+			description
+		},
+		pos{
+			pos,
+			score,
+			description
+		},
+		race{
+			id,
+			name,
+			circuit{
+				id,
+				name,
+				length,
+				nLaps,
+				country{
+					countryCode,
+					countryName
+				},
+				recordLap,
+				img
+				},
+			date
+		},
+		fastestLap
+	}
+	
+## Scores
+
+### `/api/scores`
+Returns all scores
+
+    [
+		{ 
+			pos,
+			score,
+			description
+		},
+		{ Score },
+	]
+
+### `/api/scores/<id>`
+Returns specific score by id
+
+    { 
+		pos,
+		score,
+		description
+	}
+	
+## Races
+
+### `/api/races`
+Returns all races
+
+    [
+		{ 
+			id,
+			name,
+			circuit{
+				id,
+				name,
+				length,
+				nLaps,
+				country{
+					countryCode,
+					countryName
+				},
+				recordLap,
+				img
+			},
+			date
+		},
+		{ Race },
+	]
+
+### `/api/races/<id>`
+Returns specific race by id
+
+    { 
+		id,
+		name,
+		circuit{
+			id,
+			name,
+			length,
+			nLaps,
+			country{
+				countryCode,
+				countryName
+			},
+			recordLap,
+			img
+		},
+		date
 	}
