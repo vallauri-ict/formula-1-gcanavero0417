@@ -13,6 +13,10 @@ $(function () {
         richiesta("/Countries", loadTable);
     });
     
+    $("#loadRaces_Scores").on("click", function () {
+        richiesta("/RacesScores", loadTable);
+    });
+    
     $("#loadDriver").on("click", function () {
         let driverId = $("#txtDriver").val();
         richiesta("/Drivers/" + driverId, loadElement);

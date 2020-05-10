@@ -51,3 +51,14 @@ D:\5B\INFO\FormulaOneSolution\FormulaOneBatchConsoleProject\obj\Debug\FormulaOne
 D:\5B\INFO\FormulaOneSolution\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.csproj.CoreCompileInputs.cache
 D:\5B\INFO\FormulaOneSolution\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.exe
 D:\5B\INFO\FormulaOneSolution\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.pdb
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\FormulaOneBatchConsoleProject.exe.config
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\FormulaOneBatchConsoleProject.exe
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\FormulaOneBatchConsoleProject.pdb
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\FormulaOneDll.dll
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\Newtonsoft.Json.dll
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\FormulaOneDll.pdb
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\bin\Debug\Newtonsoft.Json.xml
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.csprojResolveAssemblyReference.cache
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.csproj.CoreCompileInputs.cache
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.exe
+D:\5B\INFO\formula-1-gcanavero0417\FormulaOneBatchConsoleProject\obj\Debug\FormulaOneBatchConsoleProject.pdb

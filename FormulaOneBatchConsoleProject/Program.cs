@@ -59,7 +59,7 @@ namespace FormulaOneBatchConsoleProject
                     case 'R':
                         bool OK;
                         //System.IO.File.Copy(DbTools.WORKINGPATH + "FormulaOne.mdf", DbTools.WORKINGPATH + "Backup.mdf");
-                        OK = callDropTable("Races_Scores");
+                        OK = callDropTable("RacesScores");
                         if (OK) OK=callDropTable("Scores");
                         if (OK) OK = callDropTable("Races");
                         if (OK) OK = callDropTable("Circuits");

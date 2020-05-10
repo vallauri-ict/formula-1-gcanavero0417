@@ -10,16 +10,24 @@ namespace FormulaOneDll
 {
     public class DbTools
     {
-        public const string WORKINGPATH = @"D:\5B\INFO\FormulaOneSolution\Dati\";
+        public const string WORKINGPATH = @"D:\5B\INFO\formula-1-gcanavero0417\Dati\";
         private const string CONNECTION_STRING = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+WORKINGPATH+@"FormulaOne.mdf;Integrated Security=True";
 
         private Dictionary<int, Driver> drivers;
         private Dictionary<string, Country> countries;
         private Dictionary<int, Team> teams;
+        private Dictionary<int, Circuit> circuits;
+        private Dictionary<int, Races_Score> races_scores;
+        private Dictionary<int, Scores> scores;
+        private Dictionary<int, Race> races;
 
         public Dictionary<int, Driver> Drivers { get => drivers; set => drivers = value; }
         public Dictionary<string, Country> Countries { get => countries; set => countries = value; }
         public Dictionary<int, Team> Teams { get => teams; set => teams = value; }
+        public Dictionary<int, Circuit> Circuits { get => circuits; set => circuits = value; }
+        public Dictionary<int, Races_Score> Races_Scores { get => races_scores; set => races_scores = value; }
+        public Dictionary<int, Scores> Scores { get => scores; set => scores = value; }
+        public Dictionary<int, Race> Races { get => races; set => races= value; }
 
         public void ExecuteSqlScript(string sqlScriptName)
         {
@@ -92,7 +100,9 @@ namespace FormulaOneDll
                             reader.GetString(5),
                             reader.GetString(6),
                             Drivers[reader.GetInt32(7)],
-                            Drivers[reader.GetInt32(8)]
+                            Drivers[reader.GetInt32(8)],
+                            reader.GetString(9),
+                            reader.GetString(10)
                         );
                         this.Teams.Add(t.Id, t);
                     }
@@ -140,21 +150,140 @@ namespace FormulaOneDll
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        int driverIsoCode = reader.GetInt32(0);
-                        Driver d = new Driver(driverIsoCode)
-                        {
-                            Firstname = reader.GetString(1),
-                            Lastname = reader.GetString(2),
-                            Dob = reader.GetDateTime(3),
-                            PlaceOfBirthday = reader.GetString(4),
-                            Country = Countries[reader.GetString(5)]
-                        };
-                        this.Drivers.Add(driverIsoCode, d);
+                        Driver d = new Driver(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetString(2),
+                            reader.GetDateTime(3),
+                            reader.GetString(4),
+                            Countries[reader.GetString(5)],
+                            reader.GetString(6),
+                            reader.GetString(7)
+                        );
+                        this.Drivers.Add(d.ID, d);
                     }
                     con.Close();
                     con.Dispose();
                 }
                 SqlConnection.ClearAllPools();
+            }
+        }
+        public void GetCircuits(bool forceReload = false)
+        {
+            if (forceReload || this.Circuits == null)
+            {
+                this.Circuits = new Dictionary<int, Circuit>();
+                var con = new SqlConnection(CONNECTION_STRING);
+                using (con)
+                {
+                    SqlCommand command = new SqlCommand(
+                      "SELECT * FROM Circuits;",
+                      con);
+                    con.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Circuit c = new Circuit(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            reader.GetInt32(2),
+                            reader.GetInt32(3),
+                            Countries[reader.GetString(4)],
+                            reader.GetString(5),
+                            reader.GetString(6)
+                        );
+                        this.Circuits.Add(c.ID, c);
+                    }
+                    reader.Close();
+                }
+            }
+        }
+        public void GetRaces_Scores(bool forceReload = false)
+        {
+            if (forceReload || this.Races_Scores == null)
+            {
+                GetDrivers();
+                GetCircuits();
+                GetScores();
+                this.Races_Scores = new Dictionary<int, Races_Score>();
+                var con = new SqlConnection(CONNECTION_STRING);
+                using (con)
+                {
+                    SqlCommand command = new SqlCommand(
+                      "SELECT * FROM Races_Scores;",
+                      con);
+                    con.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Races_Score rs = new Races_Score(
+                            reader.GetInt32(0),
+                            Drivers[reader.GetInt32(1)],
+                            Scores[reader.GetInt32(2)],
+                            Races[reader.GetInt32(3)],
+                            reader.GetString(4)
+                        );
+                        this.Races_Scores.Add(rs.ID, rs);
+                    }
+                    reader.Close();
+                }
+            }
+        }
+        public void GetScores(bool forceReload = false)
+        {
+            if (forceReload || this.Scores == null)
+            {
+                this.Scores = new Dictionary<int, Scores>();
+                var con = new SqlConnection(CONNECTION_STRING);
+                using (con)
+                {
+                    SqlCommand command = new SqlCommand(
+                      "SELECT * FROM Scores;",
+                      con);
+                    con.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Scores s = new Scores(
+                            reader.GetInt32(0),
+                            reader.GetInt32(1),
+                            reader.GetString(2)
+                        );
+                        this.Scores.Add(s.ID, s);
+                    }
+                    reader.Close();
+                }
+            }
+        }
+        public void GetRaces(bool forceReload = false)
+        {
+            if (forceReload || this.Races == null)
+            {
+                this.Races = new Dictionary<int, Race>();
+                var con = new SqlConnection(CONNECTION_STRING);
+                using (con)
+                {
+                    SqlCommand command = new SqlCommand(
+                      "SELECT * FROM Races;",
+                      con);
+                    con.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Race r = new Race(
+                            reader.GetInt32(0),
+                            reader.GetString(1),
+                            Circuits[reader.GetInt32(2)],
+                            reader.GetDateTime(3)
+                        );
+                        this.Races.Add(r.ID, r);
+                    }
+                    reader.Close();
+                }
             }
         }
     }
