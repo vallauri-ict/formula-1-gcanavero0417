@@ -4,61 +4,40 @@
     <meta charset="utf-8" />
     <title>FormulaOne Web Api</title>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="index.css" rel="stylesheet" />
     <script src="index.js"></script>
-    <style>
-        body > div {
-            margin: 15px;
-            display: flex;
-        }
-        body > div:nth-of-type(1) input {
-            margin: auto;
-            padding: 15px;
-        }
-        body > div div{
-            margin: auto;
-        }
-        table {
-            border-collapse: collapse;
-        }
-        table,th,td{
-            border: 1px solid black;
-        }
-        table *{
-            padding:5px;
-        }
-    </style>
 </head>
 <body>
-    <h1>FormulaOne Web Api Test</h1>
-    <h3>Click any button to load the relative table</h3>
-    <div>
-        <input type="button" id="loadDrivers" value="Drivers" />
-        <input type="button" id="loadTeams" value="Teams" />
-        <input type="button" id="loadCountries" value="Countries" />
-        <input type="button" id="loadRaces_Scores" value="Races Scores" />
+    <div id="navbar">
+        <ul>
+            <li>
+                <img src="https://www.formula1.com/etc/designs/fom-website/images/f1_logo.svg" />
+            </li>
+            <li>
+                <input type="button" id="loadDrivers" value="Drivers" />
+            </li>
+            <li>
+                <input type="button" id="loadTeams" value="Teams" />
+            </li>
+            <li>
+                <input type="button" id="loadCountries" value="Countries" />
+            </li>
+            <li>
+                <input type="button" id="loadRacesScores" value="Races Scores" />
+            </li>
+            <li>
+                <input type="button" id="loadCircuits" value="Circuits" />
+            </li>
+            <li>
+                <input type="button" id="loadRaces" value="Races" />
+            </li>
+            <li>
+                <input type="button" id="loadScores" value="Scores" />
+            </li>
+        </ul>
     </div>
-    <div>
-        <div>
-            <label>Driver id: <input id="txtDriver" type="text" /></label>
-            <input type="button" value="Search for driver" id="loadDriver" />
-        </div>
-        <div>
-            <label>Team id: <input id="txtTeam" type="text" /></label>
-            <input type="button" value="Search for team" id="loadTeam" />
-        </div>
-        <div>
-            <label>Country id: <input id="txtCountry" type="text" /></label>
-            <input type="button" value="Search for country" id="loadCountry" />
-        </div>
-        <div>
-            <label>Race id: <input id="txtCountry" type="text" /></label>
-            <input type="button" value="Search for country" id="loadCountry" />
-        </div>
+    <div id="wrapper">
+        <fieldset><h1>F1 2020 Drivers</h1></fieldset>
     </div>
-
-    <table id="table">
-        <thead></thead>
-        <tbody></tbody>
-    </table>
 </body>
 </html>

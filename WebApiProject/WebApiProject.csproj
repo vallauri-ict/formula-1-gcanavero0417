@@ -196,6 +196,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="index.css" />
     <Content Include="index.html">
       <BrowseToURL>index.html</BrowseToURL>
     </Content>

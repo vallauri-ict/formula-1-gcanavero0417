@@ -1,8 +1,105 @@
 ﻿"use strict;"
 
 $(function () {
+    let _wrapper = $("#wrapper");
     $("#loadDrivers").on("click", function () {
-        richiesta("/Drivers", loadTable);
+        richiesta("/Drivers", function (data) {
+            _wrapper.html("<fieldset><h1>F1 2020 Drivers</h1></fieldset>");
+            let _div=$("<div>")
+                .css({"display": "grid",
+                    "grid-template-columns": "auto auto auto"})
+                .appendTo(_wrapper);
+            for(let driver of data)
+            {
+                //#region generazione driver
+                let _fs=$("<fieldset>")
+                .css({"border-top-right-radius": "25px",
+                    "border": 0,
+                    "border-top": "solid 2px #15151e",
+                    "border-right": "solid 2px #15151e",
+                    "position":"relative",
+                    "width":"310px",
+                    "height":"280px",
+                    "margin": "20px",
+                    "transition": "width 1s,height 1s"
+                })
+                .data("id",driver.ID)
+                .data("open","false")
+                .appendTo(_div);
+                $("<span>")
+                .html(driver.Firstname)
+                .css({
+                    "position":"absolute",
+                    "top": "2%",
+                    "left": "2%"
+                }).appendTo(_fs);
+                $("<span>")
+                .html(driver.Lastname)
+                .css({
+                    "position":"absolute",
+                    "top": "8%",
+                    "left": "2%",
+                    "font-family": "F1-bold",
+                    "font-size":"1.2em"
+                }).appendTo(_fs);
+                $("<span>")
+                .html(driver.Country.CountryCode)
+                .css({
+                    "position":"absolute",
+                    "top": "5%",
+                    "right": "4%",
+                    "font-size":"1.3em"
+                }).appendTo(_fs);
+                $("<hr>")
+                .css({
+                    "position":"absolute",
+                    "top": "18%",
+                    "left":"2%",
+                    "width": "94%"
+                }).appendTo(_fs);
+                $("<img>")
+                .prop("src",driver.Img)
+                .css({
+                    "position":"absolute",
+                    "bottom": "2%",
+                    "right": "4%",
+                    "width": "205px"
+                }).appendTo(_fs);
+                //#endregion generazione driver
+            }
+            $("#wrapper div").on("click","fieldset",function(){
+                let _fs=$(this);
+                if(_fs.data("open")=="false")
+                {
+                    _fs.data("open","true");
+                    richiesta("/Drivers/"+_fs.data("id"),function(driver){
+                        _fs.css("width","500px");
+                        $("<span>")
+                        .html("Dob: "+driver.Dob)
+                        .addClass("open")
+                        .css({
+                            "position":"absolute",
+                            "top": "22%",
+                            "left": "2%"
+                        }).appendTo(_fs);
+                        $("<span>")
+                        .html("Place of birth: "+driver.PlaceOfBirth)
+                        .addClass("open")
+                        .css({
+                            "position":"absolute",
+                            "top": "28%",
+                            "left": "2%"
+                        }).appendTo(_fs);
+                    });
+                }else
+                {
+                    _fs.data("open","false")
+                    .css("width","310px")
+                    .find(".open").remove();
+                    
+                }
+            })
+        });
     });
 
     $("#loadTeams").on("click", function () {
