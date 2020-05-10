@@ -1,10 +1,10 @@
 # WebServices
 
-The WebServices are based on ASP.net Web Api 2.0 and are accessible with the prefix '/api/'.
+The WebServices are based on ASP.net Web Api 2.0 and are accessible with the prefix `/api/`.
 
 ## Countries
 
-### '/api/countries'
+### `/api/countries`
 Returns all countries
 
     [
@@ -15,7 +15,7 @@ Returns all countries
 		{ Country },
 	]
 
-### '/api/countries/<id>'
+### `/api/countries/<id>`
 Returns specific country by id
 
     { 
