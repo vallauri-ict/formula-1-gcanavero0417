@@ -17,7 +17,7 @@ namespace FormulaOneDll
         private Dictionary<string, Country> countries;
         private Dictionary<int, Team> teams;
         private Dictionary<int, Circuit> circuits;
-        private Dictionary<int, Races_Score> races_scores;
+        private Dictionary<int, RacesScore> racesscores;
         private Dictionary<int, Scores> scores;
         private Dictionary<int, Race> races;
 
@@ -25,7 +25,7 @@ namespace FormulaOneDll
         public Dictionary<string, Country> Countries { get => countries; set => countries = value; }
         public Dictionary<int, Team> Teams { get => teams; set => teams = value; }
         public Dictionary<int, Circuit> Circuits { get => circuits; set => circuits = value; }
-        public Dictionary<int, Races_Score> Races_Scores { get => races_scores; set => races_scores = value; }
+        public Dictionary<int, RacesScore> RacesScores { get => racesscores; set => racesscores = value; }
         public Dictionary<int, Scores> Scores { get => scores; set => scores = value; }
         public Dictionary<int, Race> Races { get => races; set => races= value; }
 
@@ -173,6 +173,7 @@ namespace FormulaOneDll
             if (forceReload || this.Circuits == null)
             {
                 this.Circuits = new Dictionary<int, Circuit>();
+                GetCountries();
                 var con = new SqlConnection(CONNECTION_STRING);
                 using (con)
                 {
@@ -199,14 +200,14 @@ namespace FormulaOneDll
                 }
             }
         }
-        public void GetRaces_Scores(bool forceReload = false)
+        public void GetRacesScores(bool forceReload = false)
         {
-            if (forceReload || this.Races_Scores == null)
+            if (forceReload || this.RacesScores == null)
             {
                 GetDrivers();
-                GetCircuits();
+                GetRaces();
                 GetScores();
-                this.Races_Scores = new Dictionary<int, Races_Score>();
+                this.RacesScores = new Dictionary<int, RacesScore>();
                 var con = new SqlConnection(CONNECTION_STRING);
                 using (con)
                 {
@@ -218,14 +219,14 @@ namespace FormulaOneDll
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Races_Score rs = new Races_Score(
+                        RacesScore rs = new RacesScore(
                             reader.GetInt32(0),
                             Drivers[reader.GetInt32(1)],
                             Scores[reader.GetInt32(2)],
                             Races[reader.GetInt32(3)],
                             reader.GetString(4)
                         );
-                        this.Races_Scores.Add(rs.ID, rs);
+                        this.RacesScores.Add(rs.ID, rs);
                     }
                     reader.Close();
                 }
@@ -252,7 +253,7 @@ namespace FormulaOneDll
                             reader.GetInt32(1),
                             reader.GetString(2)
                         );
-                        this.Scores.Add(s.ID, s);
+                        this.Scores.Add(s.Pos, s);
                     }
                     reader.Close();
                 }
@@ -263,6 +264,7 @@ namespace FormulaOneDll
             if (forceReload || this.Races == null)
             {
                 this.Races = new Dictionary<int, Race>();
+                GetCircuits();
                 var con = new SqlConnection(CONNECTION_STRING);
                 using (con)
                 {

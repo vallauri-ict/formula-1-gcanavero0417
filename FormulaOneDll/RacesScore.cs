@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FormulaOneDll
 {
-    public class Races_Score
+    public class RacesScore
     {
         private int id;
         private Driver driver;
@@ -14,7 +14,7 @@ namespace FormulaOneDll
         private Race race;
         private string fastestLap;
 
-        public Races_Score(int id, Driver driver, Scores pos, Race race, string fastestLap)
+        public RacesScore(int id, Driver driver, Scores pos, Race race, string fastestLap)
         {
             this.ID = id;
             this.Driver = driver;

@@ -12,18 +12,18 @@ namespace WebApiProject.Controllers
     {
         DbTools db = new DbTools();
 
-        public IEnumerable<Races_Score> GetAllCountries()
+        public IEnumerable<RacesScore> GetAllCountries()
         {
-            db.GetRaces_Scores();
-            return db.Races_Scores.Values;
+            db.GetRacesScores();
+            return db.RacesScores.Values;
         }
-        public IHttpActionResult GetRaces_Score(int id)
+        public IHttpActionResult GetRacesScore(int id)
         {
-            db.GetRaces_Scores();
-            if (db.Races_Scores[id] == null)
+            db.GetRacesScores();
+            if (db.RacesScores[id] == null)
                 return NotFound();
 
-            return Ok(db.Races_Scores[id]);
+            return Ok(db.RacesScores[id]);
         }
     }
 }

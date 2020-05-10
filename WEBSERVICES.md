@@ -275,8 +275,8 @@ Returns all scores
 		{ Score },
 	]
 
-### `/api/scores/<id>`
-Returns specific score by id
+### `/api/scores/<pos>`
+Returns specific score by pos
 
     { 
 		pos,
