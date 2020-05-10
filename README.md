@@ -30,5 +30,7 @@ ASPX.NET webpage that just shows the tables.
 
 C# Web Api 2.0 that returns the data from the db, with also a simple crud.
 
-#Database Diargam
+---
+#Database Diagram
+
 ![Preview](https://github.com/vallauri-ict/formula-1-gcanavero0417/blob/master/db-diagram.png?raw=true)
