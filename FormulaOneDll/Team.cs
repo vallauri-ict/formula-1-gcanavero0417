@@ -35,7 +35,7 @@ namespace FormulaOneDll
             this.img = img;
         }
 
-        public int Id
+        public int ID
         {
             get
             {

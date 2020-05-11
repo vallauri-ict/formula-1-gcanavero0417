@@ -104,7 +104,7 @@ namespace FormulaOneDll
                             reader.GetString(9),
                             reader.GetString(10)
                         );
-                        this.Teams.Add(t.Id, t);
+                        this.Teams.Add(t.ID, t);
                     }
                     reader.Close();
                 }

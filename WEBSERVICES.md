@@ -75,6 +75,22 @@ Returns specific team by id
 		img
 	}
 	
+### `/api/teams/simple`
+Returns all teams with the TeamSimple DTO
+
+    [
+		{ 
+			id,
+			name,
+			country,
+			logo,
+			firstDriver,
+			secondDriver,
+			img
+		},
+		{ TeamSimple },
+	]
+	
 ## Driver
 
 ### `/api/drivers`
@@ -113,6 +129,20 @@ Returns specific driver by id
 		img,
 		description
 	}
+	
+### `/api/drivers/simple
+Returns all driver with the DriverSimple DTO
+
+    [
+		{ 
+			id,
+			firstname,
+			lastname,
+			countrycode,
+			img
+		},
+		{ DriverSimple },
+	]
 	
 ## Countries
 

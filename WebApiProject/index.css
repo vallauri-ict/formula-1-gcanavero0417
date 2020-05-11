@@ -14,6 +14,7 @@
     height: 65px;
     position: fixed;
     width:100%;
+    z-index: 1;
 }
 
 
@@ -82,3 +83,103 @@
 #wrapper div fieldset:hover{
     cursor: pointer;
 }
+
+/*#region Driver*/
+#wrapper div fieldset.driver{
+    border-top-right-radius: 25px;
+    border: 0;
+    border-top: solid 2px #15151e;
+    border-right: solid 2px #15151e;
+    position:relative;
+    width:310px;
+    height:280px;
+    margin: 20px;
+    transition: width 1s,height 1s;
+}
+#wrapper div .driver .firstname{
+    position:absolute;
+    top: 2%;
+    left: 2%;
+}
+#wrapper div .driver .lastname{
+    position:absolute;
+    top: 8%;
+    left: 2%;
+    font-family: F1-bold;
+    font-size: 1.2em;
+}
+#wrapper div .driver .country{
+    position: absolute;
+    top: 5%;
+    right: 4%;
+    font-size: 1.3em;
+}
+#wrapper div .driver .hr{
+    position: absolute;
+    top: 18%;
+    left:2%;
+    width: 94%;
+}
+#wrapper div .driver .img{
+    position:absolute;
+    bottom: 2%;
+    right: 4%;
+    width: 205px;
+}
+/*#endregion*/
+
+/*#region Team*/
+#wrapper div fieldset.team{
+    border-top-right-radius: 25px;
+    border: 0;
+    border-top: solid 2px #15151e;
+    border-right: solid 2px #15151e;
+    position:relative;
+    width:450px;
+    height:280px;
+    margin: 20px;
+    transition: width 1s,height 1s;
+}
+#wrapper div .team .name{
+    position: absolute;
+    top: 2%;
+    left: 0.6%;
+    font-size: 1.4em;
+    font-family: F1-bold;
+}
+#wrapper div .team .country{
+    position: absolute;
+    top: 10%;
+    left: 0.6%;
+}
+#wrapper div .team .hr{
+    position: absolute;
+    top: 18%;
+    left: 0.6%;
+    width: 65%;
+}
+#wrapper div .team .firstDriver{
+    position: absolute;
+    top: 20%;
+    left: 0.6%;
+    font-size: 1.3em;
+}
+#wrapper div .team .secondDriver{
+    position: absolute;
+    top: 20%;
+    right: 35%;
+    font-size: 1.3em;
+}
+#wrapper div .team .img{
+    position: absolute;
+    bottom: 0.6%;
+    left: 0.6%;
+    width: 405px;
+}
+#wrapper div .team .logo{
+    position: absolute;
+    right: 0;
+    width: 150px;
+    border-top-right-radius: 25px;
+}
+/*#endregion*/

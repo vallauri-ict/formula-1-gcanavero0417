@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace WebApiProject.Controllers
 {
-    public class RacesScoresController : ApiController
+    public class racesscoresController : ApiController
     {
         DbTools db = new DbTools();
 
