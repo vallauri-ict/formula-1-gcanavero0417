@@ -86,6 +86,11 @@
 }
 
 /*#region Driver*/
+#wrapper div.driver {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 #wrapper div fieldset.driver{
     border-top-right-radius: 25px;
     border: 0;
@@ -130,6 +135,10 @@
 /*#endregion*/
 
 /*#region Team*/
+#wrapper div.team {
+    display: grid;
+    grid-template-columns: auto auto;
+}
 #wrapper div fieldset.team{
     border-top-right-radius: 25px;
     border: 0;
@@ -217,6 +226,10 @@
 /*#endregion*/
 
 /*#region Circuit*/
+#wrapper div.circuit{
+    display: grid;
+    grid-template-columns: auto auto;
+}
 #wrapper div fieldset.circuit{
     border-top-right-radius: 25px;
     border: 0;
@@ -274,6 +287,10 @@
 /*#endregion*/
 
 /*#region Race*/
+#wrapper div.race{
+    display: grid;
+    grid-template-columns: auto;
+}
 #wrapper div fieldset.race{
     border-top-right-radius: 25px;
     border: 0;
@@ -291,7 +308,7 @@
 }
 #wrapper div .race .opener{
     position: absolute;
-    top: 10%;
+    top: 6px;
     right: 2%;
     font-size: 2em;
     transform: rotate(90deg);
@@ -299,4 +316,44 @@
 #wrapper div .race .circuitname{
     letter-spacing: 0.8px;
 }
+
+/*OPEN/*/
+#wrapper div .race div fieldset.score{
+    border-bottom-right-radius: 10px;
+    border: 0;
+    border-bottom: solid 1px #15151e;
+    border-right: solid 1px #15151e;
+    width: 95%;
+    margin: 5px 0;
+    position: relative;
+    height: 20px;
+}
+#wrapper div .race div fieldset.score .pos{
+    position: absolute;
+    bottom: 10%;
+    left: 0.6%;
+}
+#wrapper div .race div fieldset.score .driver{
+    position: absolute;
+    bottom: 10%;
+    left: 12%;
+}
+#wrapper div .race div fieldset.score .driver span.bold{
+    font-family: F1-bold;
+}
+#wrapper div .race div fieldset.score .teamName{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+}
+#wrapper div .race div fieldset.score .score{
+    position: absolute;
+    bottom: 10%;
+    right: 1%;
+}
 /*#endregion*/
+@media screen and (max-width: 1000px) {
+    #wrapper div.driver {grid-template-columns: auto auto;}
+    #wrapper div.team {grid-template-columns: auto;}
+    #wrapper div.circuit {grid-template-columns: auto;}
+}

@@ -288,5 +288,42 @@ namespace FormulaOneDll
                 }
             }
         }
+        public Dictionary<int, RacesScore> GetRacesScoreByRace(int raceId)
+        {
+            Dictionary<int, RacesScore> rs;
+            GetDrivers();
+            GetRaces();
+            GetScores();
+            GetTeams();
+            this.RacesScores = new Dictionary<int, RacesScore>();
+            var con = new SqlConnection(CONNECTION_STRING);
+            using (con)
+            {
+                SqlCommand command = new SqlCommand(
+                    "SELECT r.id,r.extDriver,r.extPos,r.extRace,r.fastestLap,t.id " +
+                    "FROM RacesScores as r, Teams as t " +
+                    "WHERE r.extRace=@id AND (t.extFirstDriver=r.extDriver OR t.extSecondDriver=r.extDriver);",
+                    con);
+                command.Parameters.AddWithValue("@id", raceId);
+                con.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                rs=new Dictionary<int, RacesScore>();
+                while (reader.Read())
+                {
+                    RacesScore r = new RacesScore(
+                        reader.GetInt32(0),
+                        Drivers[reader.GetInt32(1)],
+                        Scores[reader.GetInt32(2)],
+                        Races[reader.GetInt32(3)],
+                        Teams[reader.GetInt32(5)],
+                        reader.GetString(4)
+                    );
+                    rs.Add(r.ID, r);
+                }
+                reader.Close();
+            }
+            return rs;
+        }
     }
 }

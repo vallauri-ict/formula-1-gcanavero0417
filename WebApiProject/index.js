@@ -6,9 +6,8 @@ $(function () {
         richiesta("/drivers/simple", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Drivers</h1></fieldset>");
             let _div=$("<div>")
-                .css({"display": "grid",
-                    "grid-template-columns": "auto auto auto"})
-                .appendTo(_wrapper);
+            .addClass("driver")
+            .appendTo(_wrapper);
             for(let driver of data)
             {
                 //#region generazione driver
@@ -64,7 +63,10 @@ $(function () {
                             "position":"absolute",
                             "top": "22%",
                             "left": "2%"
-                        }).appendTo(_fs);
+                        })
+                        .hide()
+                        .fadeIn(1000)
+                        .appendTo(_fs);
                         $("<span>")
                         .html("Place of birth: "+driver.placeOfBirthday)
                         .addClass("open")
@@ -72,7 +74,10 @@ $(function () {
                             "position":"absolute",
                             "top": "28%",
                             "left": "2%"
-                        }).appendTo(_fs);
+                        })
+                        .hide()
+                        .fadeIn(1000)
+                        .appendTo(_fs);
                     });
                 }else
                 {
@@ -89,12 +94,10 @@ $(function () {
         richiesta("/teams/simple", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Teams</h1></fieldset>");
             let _div=$("<div>")
-                .css({"display": "grid",
-                    "grid-template-columns": "auto auto"})
-                .appendTo(_wrapper);
+            .addClass("team")
+            .appendTo(_wrapper);
             for(let team of data)
             {
-                //#region generazione team
                 let _fs=$("<fieldset>")
                 .addClass("team")
                 .data("id",team.id)
@@ -143,7 +146,6 @@ $(function () {
                 .prop("src",team.logo)
                 .addClass("logo")
                 .appendTo(_fs);
-                //#endregion generazione team
             }
             _div.on("click","fieldset.team",function(){
                 let _fs=$(this);
@@ -173,35 +175,49 @@ $(function () {
                         .prop("src",team.secondDriver.img)
                         .addClass("img")
                         .addClass("open")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs.children(".firstDriver").css("height","30%"));
                         $("<img>")
                         .prop("src",team.firstDriver.img)
                         .addClass("img")
                         .addClass("open")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs.children(".secondDriver").css("height","30%"));
                         $("<span>")
                         .html(team.firstDriver.firstname)
                         .addClass("open")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs.children(".firstDriver"));
                         $("<span>")
                         .html(team.secondDriver.firstname)
                         .addClass("open")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs.children(".secondDriver"));
                         
                         $("<span>")
                         .html("Power unit: "+team.powerUnit)
                         .addClass("open")
                         .addClass("powerUnit")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs);
                         $("<span>")
                         .html("Technical chief: "+team.technicalChief)
                         .addClass("open")
                         .addClass("technicalChief")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs);
                         $("<span>")
                         .html("Chassis: "+team.chassis)
                         .addClass("open")
                         .addClass("chassis")
+                        .hide()
+                        .fadeIn(1000)
                         .appendTo(_fs);
                     });
                 }else
@@ -220,12 +236,10 @@ $(function () {
         richiesta("/circuits/", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Circuits</h1></fieldset>");
             let _div=$("<div>")
-                .css({"display": "grid",
-                    "grid-template-columns": "auto auto"})
-                .appendTo(_wrapper);
+            .addClass("circuit")
+            .appendTo(_wrapper);
             for(let circuit of data)
             {
-                //#region generazione circuit
                 let _fs=$("<fieldset>")
                 .addClass("circuit")
                 .data("id",circuit.id)
@@ -255,7 +269,6 @@ $(function () {
                 .prop("src",circuit.img)
                 .addClass("img")
                 .appendTo(_fs);
-                //#endregion generazione circuit
             }
         });
     });
@@ -263,12 +276,10 @@ $(function () {
         richiesta("/races/simple", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Races</h1></fieldset>");
             let _div=$("<div>")
-                .css({"display": "grid",
-                    "grid-template-columns": "auto"})
-                .appendTo(_wrapper);
+            .addClass("race")
+            .appendTo(_wrapper);
             for(let race of data)
             {
-                //#region generazione race
                 let _fs=$("<fieldset>")
                 .addClass("race")
                 .data("id",race.id)
@@ -290,7 +301,6 @@ $(function () {
                 .html("⟩")
                 .addClass("opener")
                 .appendTo(_fs);
-                //#endregion generazione race
             }
             _div.on("click","fieldset.race",function(){
                 let _fs=$(this);
@@ -305,11 +315,54 @@ $(function () {
                     .html("⟩");
 
                     _fs.data("open","true");
-                    richiesta("/racesscore/"+_fs.data("id"),function(team){                     
-                        _fs.css("height","350px");
+                    richiesta("/racesscores/race/"+_fs.data("id"),function(data){  
+                        let _div=$("<div>")
+                        .addClass("open")
+                        .css("display","none")
+                        .appendTo(_fs);
+                        
+                        for(let score of data)
+                        {
+                            let _score=$("<fieldset>")
+                            .addClass("open")
+                            .addClass("score");
 
-                        _fs.children(".opener")
-                        .html("⟨");
+                            if(score.pos!=0)
+                            {
+                                _score.prependTo(_div);
+                                $("<span>")
+                                .html(score.pos)
+                                .addClass("open")
+                                .addClass("pos")
+                                .appendTo(_score);
+                            }                            
+                            else
+                            {
+                                _score.appendTo(_div);
+                                $("<span>")
+                                .html(score.details)
+                                .addClass("open")
+                                .addClass("pos")
+                                .appendTo(_score);
+                            }
+
+                            $("<span>")
+                            .html("<span class='bold'>"+score.driverLastName+" </span>"+score.driverFirstName)
+                            .addClass("open")
+                            .addClass("driver")
+                            .appendTo(_score);
+                            $("<span>")
+                            .html(score.teamName)
+                            .addClass("open")
+                            .addClass("teamName")
+                            .appendTo(_score);
+                            $("<span>")
+                            .html(score.score)
+                            .addClass("open")
+                            .addClass("score")
+                            .appendTo(_score);
+                        }
+                        _div.slideDown(2000);
                     });
                 }else
                 {

@@ -271,7 +271,7 @@ Returns specific race score by id
 		pos{
 			pos,
 			score,
-			description
+			details
 		},
 		race{
 			id,
@@ -293,6 +293,22 @@ Returns specific race score by id
 		fastestLap
 	}
 	
+### `/api/racesscores/race/<id>`
+Returns all RacesScores relative to a Race by it's id with the RacesScoreByRace DTO
+
+    [
+		{
+			id,
+			driverLastName,
+			driverFirstName,
+			pos,
+			score,
+			details,
+			teamName
+		}
+		{ RacesScoreByRace },
+	]
+	
 ## Scores
 
 ### `/api/scores`
@@ -302,7 +318,7 @@ Returns all scores
 		{ 
 			pos,
 			score,
-			description
+			details
 		},
 		{ Score },
 	]
@@ -313,7 +329,7 @@ Returns specific score by pos
     { 
 		pos,
 		score,
-		description
+		details
 	}
 	
 ## Races
