@@ -84,8 +84,10 @@ Returns all teams with the TeamSimple DTO
 			name,
 			country,
 			logo,
-			firstDriver,
-			secondDriver,
+			firstdriverid,
+			firstdrivername,
+			secondriverid,
+			seconddrivername,
 			img
 		},
 		{ TeamSimple },

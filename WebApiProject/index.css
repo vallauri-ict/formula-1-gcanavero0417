@@ -14,7 +14,7 @@
     height: 65px;
     position: fixed;
     width:100%;
-    z-index: 1;
+    z-index: 3;
 }
 
 
@@ -22,6 +22,7 @@
     display: flex;
     height: 100%;
     margin: 0;
+    width: 50%;
 }
 
 #navbar ul li {
@@ -135,12 +136,13 @@
     border-top: solid 2px #15151e;
     border-right: solid 2px #15151e;
     position:relative;
-    width:450px;
+    width:95%;
     height:280px;
     margin: 20px;
     transition: width 1s,height 1s;
 }
 #wrapper div .team .name{
+    z-index: 2;
     position: absolute;
     top: 2%;
     left: 0.6%;
@@ -156,20 +158,21 @@
     position: absolute;
     top: 18%;
     left: 0.6%;
-    width: 65%;
+    width: 75%;
 }
-#wrapper div .team .firstDriver{
+#wrapper div .team fieldset{
     position: absolute;
     top: 20%;
-    left: 0.6%;
     font-size: 1.3em;
+    border-bottom-right-radius: 10px;
+    border: 0;
+    border-bottom: solid 1px #15151e;
+    border-right: solid 1px #15151e;
+    width:35%;
+    transition: width 1s,height 1s;
 }
-#wrapper div .team .secondDriver{
-    position: absolute;
-    top: 20%;
-    right: 35%;
-    font-size: 1.3em;
-}
+#wrapper div .team .firstDriver{left: 0.6%;}
+#wrapper div .team .secondDriver{right: 28%;}
 #wrapper div .team .img{
     position: absolute;
     bottom: 0.6%;
@@ -181,5 +184,91 @@
     right: 0;
     width: 150px;
     border-top-right-radius: 25px;
+}
+/*open*/
+#wrapper div .team .powerUnit{
+    position: absolute;
+    top: 50%;
+    left: 0.6%;
+}
+#wrapper div .team .technicalChief{
+    position: absolute;
+    top: 56%;
+    left: 0.6%;
+}
+#wrapper div .team .chassis{
+    position: absolute;
+    top: 62%;
+    left: 0.6%;
+}
+#wrapper div .team fieldset img.open{
+    left: unset;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    border-bottom-right-radius: 10px;
+}
+#wrapper div .team fieldset span.open{
+    position: absolute;
+    top: 20%;
+    font-size: 0.7em;
+    left: 0%;
+}
+/*#endregion*/
+
+/*#region Circuit*/
+#wrapper div fieldset.circuit{
+    border-top-right-radius: 25px;
+    border: 0;
+    border-top: solid 2px #15151e;
+    border-right: solid 2px #15151e;
+    position:relative;
+    width:85%;
+    height:280px;
+    margin: 20px;
+    transition: width 1s,height 1s;
+}
+#wrapper div fieldset.circuit:hover{
+    cursor: default;
+}
+#wrapper div .circuit .name{
+    z-index: 2;
+    position: absolute;
+    top: 2%;
+    left: 0.6%;
+    font-size: 1.4em;
+    font-family: F1-bold;
+}
+#wrapper div .circuit .country{
+    position: absolute;
+    top: 10%;
+    left: 0.6%;
+}
+#wrapper div .circuit .hr{
+    position: absolute;
+    top: 18%;
+    left: 0.6%;
+    width: 85%;
+}
+#wrapper div .circuit .length{
+    position: absolute;
+    top: 18%;
+    left: 0.6%;
+}
+#wrapper div .circuit .nLaps{
+    position: absolute;
+    top: 18%;
+    right: 14%;
+}
+#wrapper div .circuit .recordLap{
+    position: absolute;
+    top: 18%;
+    left: 0.6%;
+}
+#wrapper div .circuit .img{
+    position:absolute;
+    bottom: 2%;
+    left: 0.6%;
+    max-height: 200px;
 }
 /*#endregion*/

@@ -18,10 +18,14 @@ namespace WebApiProject.DTO
         private string country;
         [DataMember(Name = "logo")]
         private string logo;
-        [DataMember(Name = "firstdriver")]
-        private string firstdriver;
-        [DataMember(Name = "seconddriver")]
-        private string seconddriver;
+        [DataMember(Name = "firstdriverid")]
+        private int firstdriverid;
+        [DataMember(Name = "firstdrivername")]
+        private string firstdrivername;
+        [DataMember(Name = "seconddriverid")]
+        private int seconddriverid;
+        [DataMember(Name = "seconddrivername")]
+        private string seconddrivername;
         [DataMember(Name = "img")]
         private string img;
 
@@ -31,8 +35,10 @@ namespace WebApiProject.DTO
             this.name = t.Name;
             this.country = t.Country.CountryName;
             this.logo = t.Logo;
-            this.firstdriver = t.FirstDriver.Lastname;
-            this.seconddriver = t.SecondDriver.Lastname;
+            this.firstdriverid = t.FirstDriver.ID;
+            this.firstdrivername = t.FirstDriver.Lastname;
+            this.seconddriverid = t.SecondDriver.ID;
+            this.seconddrivername = t.SecondDriver.Lastname;
             this.img = t.Img;
         }
     }

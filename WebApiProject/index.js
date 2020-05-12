@@ -43,7 +43,7 @@ $(function () {
                 .appendTo(_fs);
                 //#endregion generazione driver
             }
-            $("#wrapper div").on("click","fieldset",function(){
+            $("#wrapper div").on("click",".driver",function(){
                 let _fs=$(this);
                 if(_fs.data("open")=="false")
                 {
@@ -56,8 +56,9 @@ $(function () {
                     _fs.data("open","true");
                     richiesta("/drivers/"+_fs.data("id"),function(driver){                     
                         _fs.css("width","500px");
+                        let date=new Date(driver.dob);
                         $("<span>")
-                        .html("Dob: "+driver.dob)
+                        .html("Dob: "+date.getDay()+'/'+date.getMonth()+'/'+date.getFullYear())
                         .addClass("open")
                         .css({
                             "position":"absolute",
@@ -93,7 +94,7 @@ $(function () {
                 .appendTo(_wrapper);
             for(let team of data)
             {
-                //#region generazione driver
+                //#region generazione team
                 let _fs=$("<fieldset>")
                 .addClass("team")
                 .data("id",team.id)
@@ -102,6 +103,7 @@ $(function () {
 
                 $("<span>")
                 .html(team.name)
+                .data("name",team.name)
                 .addClass("name")
                 .appendTo(_fs);
 
@@ -115,14 +117,22 @@ $(function () {
                 .appendTo(_fs);
 
                 $("<span>")
-                .html(team.firstdriver)
-                .addClass("firstDriver")
-                .appendTo(_fs);
+                .html(team.firstdrivername)
+                .appendTo(
+                    $("<fieldset>")
+                    .addClass("firstDriver")
+                    .data("id",team.firstdriverid)
+                    .data("open","false")
+                    .appendTo(_fs));
 
                 $("<span>")
-                .html(team.seconddriver)
-                .addClass("secondDriver")
-                .appendTo(_fs);
+                .html(team.seconddrivername)
+                .appendTo(
+                    $("<fieldset>")
+                    .addClass("secondDriver")
+                    .data("id",team.seconddriverid)
+                    .data("open","false")
+                    .appendTo(_fs));
 
                 $("<img>")
                 .prop("src",team.img)
@@ -133,30 +143,121 @@ $(function () {
                 .prop("src",team.logo)
                 .addClass("logo")
                 .appendTo(_fs);
-                //#endregion generazione driver
+                //#endregion generazione team
             }
+            _div.on("click","fieldset.team",function(){
+                let _fs=$(this);
+                if(_fs.data("open")=="false")
+                {
+                    //reset other opened fieldsets   
+                    _div.find("fieldset")
+                    .data("open","false")
+                    .css("height","")
+                    .find(".open").remove();
+                    _div.find(".team fieldset")
+                    .css("height","");
+
+                    _div.find(".name").each(function(){
+                        $(this).html($(this).data("name"));
+                    });
+
+                    _fs.data("open","true");
+                    richiesta("/teams/"+_fs.data("id"),function(team){                     
+                        //_fs.css("width","100%");
+                        _fs.css("height","350px");
+
+                        _fs.children(".name")
+                        .html(team.fullTeamName);
+                        
+                        $("<img>")
+                        .prop("src",team.secondDriver.img)
+                        .addClass("img")
+                        .addClass("open")
+                        .appendTo(_fs.children(".firstDriver").css("height","30%"));
+                        $("<img>")
+                        .prop("src",team.firstDriver.img)
+                        .addClass("img")
+                        .addClass("open")
+                        .appendTo(_fs.children(".secondDriver").css("height","30%"));
+                        $("<span>")
+                        .html(team.firstDriver.firstname)
+                        .addClass("open")
+                        .appendTo(_fs.children(".firstDriver"));
+                        $("<span>")
+                        .html(team.secondDriver.firstname)
+                        .addClass("open")
+                        .appendTo(_fs.children(".secondDriver"));
+                        
+                        $("<span>")
+                        .html("Power unit: "+team.powerUnit)
+                        .addClass("open")
+                        .addClass("powerUnit")
+                        .appendTo(_fs);
+                        $("<span>")
+                        .html("Technical chief: "+team.technicalChief)
+                        .addClass("open")
+                        .addClass("technicalChief")
+                        .appendTo(_fs);
+                        $("<span>")
+                        .html("Chassis: "+team.chassis)
+                        .addClass("open")
+                        .addClass("chassis")
+                        .appendTo(_fs);
+                    });
+                }else
+                {
+                    _fs.data("open","false")
+                    .css("height","")
+                    .find(".open").remove();
+
+                    _fs.children("fieldset").css("height","");
+                }
+            })
         });
     });
 
-    $("#loadCountries").on("click", function () {
-        richiesta("/Countries", loadTable);
-    });
-    
-    $("#loadRaces_Scores").on("click", function () {
-        richiesta("/RacesScores", loadTable);
-    });
-    
-    $("#loadDriver").on("click", function () {
-        let driverId = $("#txtDriver").val();
-        richiesta("/Drivers/" + driverId, loadElement);
-    });
-    $("#loadTeam").on("click", function () {
-        let teamId = $("#txtTeam").val();
-        richiesta("/Teams/" + teamId, loadElement);
-    });
-    $("#loadCountry").on("click", function () {
-        let countryId = $("#txtCountry").val();
-        richiesta("/Countries/" + countryId, loadElement);
+    $("#loadCircuits").on("click", function () {
+        richiesta("/circuits/", function (data) {
+            _wrapper.html("<fieldset><h1>F1 2020 Circuits</h1></fieldset>");
+            let _div=$("<div>")
+                .css({"display": "grid",
+                    "grid-template-columns": "auto auto"})
+                .appendTo(_wrapper);
+            for(let circuit of data)
+            {
+                //#region generazione team
+                let _fs=$("<fieldset>")
+                .addClass("circuit")
+                .data("id",circuit.id)
+                .data("open","false")
+                .appendTo(_div);
+
+                $("<span>")
+                .html(circuit.name)
+                .addClass("name")
+                .appendTo(_fs);
+                $("<span>")
+                .html(circuit.country.countryName)
+                .addClass("country")
+                .appendTo(_fs);
+                $("<span>")
+                .html((circuit.length/1000)+"km")
+                .addClass("length")
+                .appendTo(_fs);
+                $("<span>")
+                .html("Laps: "+circuit.nLaps)
+                .addClass("nLaps")
+                .appendTo(_fs);
+                $("<hr>")
+                .addClass("hr")
+                .appendTo(_fs);
+                $("<img>")
+                .prop("src",circuit.img)
+                .addClass("img")
+                .appendTo(_fs);
+                //#endregion generazione circuit
+            }
+        });
     });
 });
 
