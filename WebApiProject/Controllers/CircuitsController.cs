@@ -12,7 +12,7 @@ namespace WebApiProject.Controllers
     {
         DbTools db = new DbTools();
 
-        public IEnumerable<Circuit> GetAllCountries()
+        public IEnumerable<Circuit> GetAllCircuits()
         {
             db.GetCircuits();
             return db.Circuits.Values;

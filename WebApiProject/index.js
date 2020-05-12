@@ -58,7 +58,7 @@ $(function () {
                         _fs.css("width","500px");
                         let date=new Date(driver.dob);
                         $("<span>")
-                        .html("Dob: "+date.getDay()+'/'+date.getMonth()+'/'+date.getFullYear())
+                        .html("Dob: "+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear())
                         .addClass("open")
                         .css({
                             "position":"absolute",
@@ -225,7 +225,7 @@ $(function () {
                 .appendTo(_wrapper);
             for(let circuit of data)
             {
-                //#region generazione team
+                //#region generazione circuit
                 let _fs=$("<fieldset>")
                 .addClass("circuit")
                 .data("id",circuit.id)
@@ -257,6 +257,70 @@ $(function () {
                 .appendTo(_fs);
                 //#endregion generazione circuit
             }
+        });
+    });
+    $("#loadRaces").on("click", function () {
+        richiesta("/races/simple", function (data) {
+            _wrapper.html("<fieldset><h1>F1 2020 Races</h1></fieldset>");
+            let _div=$("<div>")
+                .css({"display": "grid",
+                    "grid-template-columns": "auto"})
+                .appendTo(_wrapper);
+            for(let race of data)
+            {
+                //#region generazione race
+                let _fs=$("<fieldset>")
+                .addClass("race")
+                .data("id",race.id)
+                .data("open","false")
+                .appendTo(_div);
+
+                $("<p>")
+                .html(race.name)
+                .addClass("name")
+                .appendTo(_fs);
+
+                let date=new Date(race.date);
+                let dateString=date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
+                $("<p>")
+                .html(race.circuitname+' ('+race.countrycode+') - '+ dateString)
+                .addClass("circuitname")
+                .appendTo(_fs);
+                $("<span>")
+                .html("⟩")
+                .addClass("opener")
+                .appendTo(_fs);
+                //#endregion generazione race
+            }
+            _div.on("click","fieldset.race",function(){
+                let _fs=$(this);
+                if(_fs.data("open")=="false")
+                {
+                    //reset other opened fieldsets   
+                    _div.find("fieldset")
+                    .data("open","false")
+                    .css("height","")
+                    .find(".open").remove();
+                    _div.find(".opener")
+                    .html("⟩");
+
+                    _fs.data("open","true");
+                    richiesta("/racesscore/"+_fs.data("id"),function(team){                     
+                        _fs.css("height","350px");
+
+                        _fs.children(".opener")
+                        .html("⟨");
+                    });
+                }else
+                {
+                    _fs.data("open","false")
+                    .css("height","")
+                    .find(".open").remove();
+
+                    _fs.children(".opener")
+                    .html("⟩");
+                }
+            })
         });
     });
 });

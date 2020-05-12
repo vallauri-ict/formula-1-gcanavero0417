@@ -342,6 +342,20 @@ Returns all races
 		{ Race },
 	]
 
+### `/api/races/simple`
+Returns all races with the RaceSimple DTO
+
+    [
+		{ 
+			id,
+			name,
+			circuitname,
+			countrycode,
+			date
+		},
+		{ RaceSimple },
+	]
+
 ### `/api/races/<id>`
 Returns specific race by id
 

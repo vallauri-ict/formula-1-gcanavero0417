@@ -272,3 +272,31 @@
     max-height: 200px;
 }
 /*#endregion*/
+
+/*#region Race*/
+#wrapper div fieldset.race{
+    border-top-right-radius: 25px;
+    border: 0;
+    border-top: solid 2px #15151e;
+    border-right: solid 2px #15151e;
+    width: 98%;
+    height: fit-content;
+    margin: 20px 0;
+    transition: width 1s,height 1s;
+    position: relative;
+}
+#wrapper div .race .name{
+    font-size: 1.4em;
+    font-family: F1-bold;
+}
+#wrapper div .race .opener{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    font-size: 2em;
+    transform: rotate(90deg);
+}
+#wrapper div .race .circuitname{
+    letter-spacing: 0.8px;
+}
+/*#endregion*/

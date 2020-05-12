@@ -185,6 +185,7 @@
     <Compile Include="Controllers\scoresController.cs" />
     <Compile Include="Controllers\teamsController.cs" />
     <Compile Include="DTO\DriverSimple.cs" />
+    <Compile Include="DTO\RaceSimple.cs" />
     <Compile Include="DTO\TeamSimple.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
