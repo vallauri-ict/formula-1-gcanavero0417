@@ -6,7 +6,7 @@ The solution is based on a complex database representing the whole Formula1's 20
 It provides a simple desktop crud and more complex WebApi structure for the display of the data.<br>
 
 Based on Visual Studio 2017 platform, the desktop application are done with [C#](https://docs.microsoft.com/dotnet/csharp/).<br>
-The webpage of the fifth project works with [jQuery](https://api.jquery.com/).<>
+The webpage of the fifth project works with [jQuery](https://api.jquery.com/).<br>
 The DB is done with [SQL Server](https://docs.microsoft.com/sql/sql-server/?view=sql-server-ver15).<br>
 
 # Projects
