@@ -43,7 +43,9 @@
     text-align: center;
     line-height: 65px;
     padding:0 10px;
+    border-top-right-radius: 15px;
 }
+#navbar ul li input:focus {outline-width: 0;}
 #navbar ul li input:hover {
     background-color: black;
     cursor: pointer;
@@ -90,7 +92,6 @@
     display: grid;
     grid-template-columns: auto auto auto;
 }
-
 #wrapper div fieldset.driver{
     border-top-right-radius: 25px;
     border: 0;
@@ -100,8 +101,9 @@
     width:310px;
     height:280px;
     margin: 20px;
-    transition: width 1s,height 1s;
+    transition: width 1s,height 1s,border-color .5s;
 }
+#wrapper div fieldset.driver:hover{border-color: #e10600!important;}
 #wrapper div .driver .firstname{
     position:absolute;
     top: 2%;
@@ -148,8 +150,9 @@
     width:95%;
     height:280px;
     margin: 20px;
-    transition: width 1s,height 1s;
+    transition: width 1s,height 1s,border-color .5s;
 }
+#wrapper div fieldset.team:hover{border-color: #e10600!important;}
 #wrapper div .team .name{
     z-index: 2;
     position: absolute;
@@ -299,9 +302,10 @@
     width: 98%;
     height: fit-content;
     margin: 20px 0;
-    transition: width 1s,height 1s;
+    transition: width 1s,height 1s,border-color .5s;
     position: relative;
 }
+#wrapper div fieldset.race:hover{border-color: #e10600!important;}
 #wrapper div .race .name{
     font-size: 1.4em;
     font-family: F1-bold;
@@ -312,7 +316,9 @@
     right: 2%;
     font-size: 2em;
     transform: rotate(90deg);
+    transition: color .5s;
 }
+#wrapper div .race:hover .opener{color: #e10600!important;}
 #wrapper div .race .circuitname{
     letter-spacing: 0.8px;
 }

@@ -28,8 +28,10 @@ ASPX.NET webpage that just shows the tables.
 
 ### Project 5 - FormulaOneWebApi
 
-C# Web Api 2.0 that returns the data from the db, with also a simple crud.
+The core of the whole solution, with a complex C# Web Api 2.0 that returns data from the DB with several routes and DTOs
 [Here](https://github.com/vallauri-ict/formula-1-gcanavero0417/blob/master/WEBSERVICES.md) the WebApi model.
+The FormulaOneWebApi contains also a webpage where you can see the majority of the Formula1 DB.
+![Preview](https://github.com/vallauri-ict/formula-1-gcanavero0417/blob/master/site-preview.png?raw=true)
 
 ---
 # Database Diagram

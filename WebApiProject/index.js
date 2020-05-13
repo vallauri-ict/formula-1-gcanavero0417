@@ -3,6 +3,9 @@
 $(function () {
     let _wrapper = $("#wrapper");
     $("#loadDrivers").on("click", function () {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        $("#navbar ul li input").css("background-color","inherit");
+        $("#loadDrivers").css("background-color","rgba(0,0,0,0.3)");
         richiesta("/drivers/simple", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Drivers</h1></fieldset>");
             let _div=$("<div>")
@@ -50,7 +53,8 @@ $(function () {
                     _div.children("fieldset")
                     .data("open","false")
                     .css("width","310px")
-                    .find(".open").remove();
+                    .find(".open")
+                    .fadeOut(500,function(){$(this).remove()});
 
                     _fs.data("open","true");
                     richiesta("/drivers/"+_fs.data("id"),function(driver){                     
@@ -83,14 +87,17 @@ $(function () {
                 {
                     _fs.data("open","false")
                     .css("width","310px")
-                    .find(".open").remove();
+                    .find(".open")
+                    .fadeOut(500,function(){$(this).remove()});
                 }
             })
         });
     });
 
     $("#loadTeams").on("click", function () {
-        
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        $("#navbar ul li input").css("background-color","inherit");
+        $("#loadTeams").css("background-color","rgba(0,0,0,0.3)");
         richiesta("/teams/simple", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Teams</h1></fieldset>");
             let _div=$("<div>")
@@ -156,6 +163,7 @@ $(function () {
                     .data("open","false")
                     .css("height","")
                     .find(".open").remove();
+                    //.fadeOut(500,function(){$(this).remove()});
                     _div.find(".team fieldset")
                     .css("height","");
 
@@ -225,6 +233,8 @@ $(function () {
                     _fs.data("open","false")
                     .css("height","")
                     .find(".open").remove();
+                    //.fadeOut(500,function(){$(this).remove()});
+                    _fs.children(".name").html(_fs.children(".name").data("name"));
 
                     _fs.children("fieldset").css("height","");
                 }
@@ -233,6 +243,9 @@ $(function () {
     });
 
     $("#loadCircuits").on("click", function () {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        $("#navbar ul li input").css("background-color","inherit");
+        $("#loadCircuits").css("background-color","rgba(0,0,0,0.3)");
         richiesta("/circuits/", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Circuits</h1></fieldset>");
             let _div=$("<div>")
@@ -272,7 +285,11 @@ $(function () {
             }
         });
     });
+
     $("#loadRaces").on("click", function () {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        $("#navbar ul li input").css("background-color","inherit");
+        $("#loadRaces").css("background-color","rgba(0,0,0,0.3)");
         richiesta("/races/simple", function (data) {
             _wrapper.html("<fieldset><h1>F1 2020 Races</h1></fieldset>");
             let _div=$("<div>")
@@ -309,8 +326,8 @@ $(function () {
                     //reset other opened fieldsets   
                     _div.find("fieldset")
                     .data("open","false")
-                    .css("height","")
-                    .find(".open").remove();
+                    .find(".open")
+                    .slideUp(1000,function(){$(this).remove()});
                     _div.find(".opener")
                     .html("⟩");
 
@@ -320,7 +337,10 @@ $(function () {
                         .addClass("open")
                         .css("display","none")
                         .appendTo(_fs);
-                        
+
+                        _fs.children(".opener")
+                        .html("〈");
+
                         for(let score of data)
                         {
                             let _score=$("<fieldset>")
@@ -367,8 +387,8 @@ $(function () {
                 }else
                 {
                     _fs.data("open","false")
-                    .css("height","")
-                    .find(".open").remove();
+                    .find(".open")
+                    .slideUp(1000,function(){$(this).remove()});
 
                     _fs.children(".opener")
                     .html("⟩");
