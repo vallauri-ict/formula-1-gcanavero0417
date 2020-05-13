@@ -132,7 +132,7 @@ Returns specific driver by id
 		description
 	}
 	
-### `/api/drivers/simple
+### `/api/drivers/simple`
 Returns all driver with the DriverSimple DTO
 
     [
