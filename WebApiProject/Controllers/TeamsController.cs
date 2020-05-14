@@ -20,7 +20,7 @@ namespace WebApiProject.Controllers
             return db.Teams.Values;
         }
         [Route("simple")]
-        public IEnumerable<TeamSimple> GetAllSimpleDrivers()
+        public IEnumerable<TeamSimple> GetAllSimpleTeams()
         {
             db.GetTeams();
             List<TeamSimple> t = new List<TeamSimple>();
